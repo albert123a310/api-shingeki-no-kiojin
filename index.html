@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attack on Titan - Personajes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Attack on Titan - Personajes Destacados</h1>
+  </header>
+  <main>
+    <!-- Sección de Exploradores -->
+    <section id="exploradores">
+      <h2>Exploradores</h2>
+      <div class="characters-grid" id="exploradores-container"></div>
+    </section>
+
+    <!-- Sección de Titanes cambiantes -->
+    <section id="titanes">
+      <h2>Titanes Cambiantes</h2>
+      <div class="characters-grid" id="titanes-container"></div>
+    </section>
+
+    <!-- Sección de otros personajes -->
+    <section id="otros">
+      <h2>Otros Personajes Clave</h2>
+      <div class="characters-grid" id="otros-container"></div>
+    </section>
+  </main>
+  <footer>
+    <p>Creado por Kristal Pichardo</p>
+  </footer>
+  <script >
+// Datos de personajes organizados por categorías
+const personajesAOT = {
+  exploradores: [
+    {
+      name: "Eren Yeager",
+      description: "Protagonista principal, juró destruir a todos los titanes.",
+      img: "eren.jpeg"
+    },
+    {
+      name: "Mikasa Ackerman",
+      description: "Compañera de Eren, conocida por su destreza en combate.",
+      img: "mikasa.jpeg"
+    },
+    {
+      name: "Armin Arlert",
+      description: "Estratega brillante y amigo cercano de Eren y Mikasa.",
+      img: "armin.jpeg"
+    },
+    {
+      name: "Levi Ackerman",
+      description: "El soldado más fuerte de la humanidad y líder de los exploradores.",
+      img: "levi.jpeg"
+    },
+    {
+      name: "Hange Zoë",
+      description: "Comandante apasionada por el estudio de los titanes.",
+      img: "hange.jpeg"
+    }
+  ],
+  titanes: [
+    {
+      name: "Eren Yeager (Titán de Ataque)",
+      description: "Portador del Titán de Ataque y fundador.",
+      img: "erentitan.jpeg"
+    },
+    {
+      name: "Reiner Braun (Titán Acorazado)",
+      description: "Portador del Titán Acorazado, clave en la caída de los muros.",
+      img: "titanacorazado.jpeg"
+    },
+    {
+      name: "Annie Leonhart (Titán Hembra)",
+      description: "Portadora del Titán Hembra, infiltrada entre los exploradores.",
+      img: "titan hembra.jpeg"
+    },
+    {
+      name: "Zeke Yeager (Titán Bestia)",
+      description: "Portador del Titán Bestia, aliado inesperado de Eren.",
+      img: "titanbestia.jpeg"
+    },
+    {
+      name: "Pieck Finger (Titán Carguero)",
+      description: "Portadora del Titán Carguero, conocida por su inteligencia.",
+      img: "titancangurero.jpeg"
+    }
+  ],
+  otros: [
+    {
+      name: "Historia Reiss",
+      description: "La última reina de la humanidad dentro de los muros.",
+      img: "historia.jpeg"
+    },
+    {
+      name: "Jean Kirstein",
+      description: "Un líder nato y miembro confiable del Cuerpo de Exploración.",
+      img: "jean.jpeg"
+    },
+    {
+      name: "Connie Springer",
+      description: "Un soldado leal con gran sentido del humor.",
+      img: "connie.jpeg"
+    },
+    {
+      name: "Sasha Blouse",
+      description: "La 'chica de las papas', conocida por su gran puntería.",
+      img: "sasha.jpeg"
+    },
+    {
+      name: "Ymir Fritz",
+      description: "El origen de todos los titanes según la leyenda.",
+      img: "ymir.jpeg"
+    }
+  ]
+};
+
+// Función para cargar los personajes según la categoría
+function loadAOTCharacters(category, containerId) {
+  const container = document.getElementById(containerId);
+
+  personajesAOT[category].forEach(character => {
+    const card = document.createElement("div");
+    card.classList.add("character-card");
+
+    card.innerHTML = `
+      <img src="${character.img}" alt="${character.name}">
+      <div class="card-body">
+        <h2>${character.name}</h2>
+        <p>${character.description}</p>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+// Cargar personajes al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  loadAOTCharacters("exploradores", "exploradores-container");
+  loadAOTCharacters("titanes", "titanes-container");
+  loadAOTCharacters("otros", "otros-container");
+});
+
+
+  </script>
+
+  <style>
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #1e1e2f; /* Fondo oscuro */
+  color: #f0f0f0; /* Texto claro */
+}
+
+header {
+  background: #3c3c54; /* Encabezado oscuro */
+  text-align: center;
+  padding: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  color: #f39c12; /* Naranja inspirado en Attack on Titan */
+}
+
+main {
+  padding: 1rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+section h2 {
+  font-size: 1.8rem;
+  color: #f39c12;
+  border-bottom: 2px solid #f39c12;
+  margin-bottom: 1rem;
+}
+
+/* Contenedor de personajes */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tarjetas de personajes */
+.character-card {
+  background: #cbcbfc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(245, 242, 242, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.character-card:hover {
+  transform: scale(1.05);
+}
+
+.character-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.character-card .card-body {
+  padding: 1rem;
+}
+
+.character-card h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+}
+
+.character-card p {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #c3c3c7;
+  margin-top: 2rem;
+}
+
+  </style>
+</body>
+</html>
